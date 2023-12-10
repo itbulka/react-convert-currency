@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import './index.css';
+import * as api from './api/api';
 import SelectBlock from "./Components/SelectBlock";
 import TableCurrency from "./Components/TableCurrency";
-import * as api from './api/api';
 import {createArrayOfValutes} from "./helpers/valutesMethod";
+import {Box} from "@mui/material";
 
 function App() {
 
@@ -17,10 +17,10 @@ function App() {
     }, [])
 
   return (
-    <div>
+    <Box>
         <SelectBlock currences={valutes} value={selectedValue} onChange={value => setSelectedValue(value)}/>
         <TableCurrency currences={valutes} selectedValue={selectedValue}/>
-    </div>
+    </Box>
   );
 }
 
