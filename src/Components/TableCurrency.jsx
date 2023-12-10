@@ -6,37 +6,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import CurrencyRow from "./CurrencyRow";
 
-const CardCurrency = () => {
-
-    const [currences, setCurrences] = useState([
-        {
-            name: "Австралийский доллар",
-            value: 1,
-            code: "AUD",
-            rate: 2.32
-        },
-        {
-            name: "Австралийский доллар",
-            value: 1,
-            code: "AUD",
-            rate: 2.32
-        },
-        {
-            name: "Австралийский доллар",
-            value: 1,
-            code: "AUD",
-            rate: 2.32
-        },
-        {
-            name: "Австралийский доллар",
-            value: 1,
-            code: "AUD",
-            rate: 2.32
-        },
-    ])
+const TableCurrency = ({currences, selectedValue}) => {
 
     return (
-        <div className="card-currency__content">
+        <div className="table-currency__content">
             <Table>
                 <TableHead>
                     <TableRow>
@@ -48,12 +21,13 @@ const CardCurrency = () => {
                 </TableHead>
                 <TableBody>
                     {currences.map( currency =>
-                        <CurrencyRow currency={currency}/>
+                        <CurrencyRow currency={currency} selectedValue={selectedValue} key={currency.ID}/>
                     )}
                 </TableBody>
             </Table>
         </div>
     );
+
 };
 
-export default CardCurrency;
+export default TableCurrency;

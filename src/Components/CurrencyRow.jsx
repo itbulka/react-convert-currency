@@ -2,15 +2,17 @@ import React from 'react';
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-const CurrencyRow = (props) => {
+const CurrencyRow = ({currency, selectedValue}) => {
+
     return (
         <TableRow>
-            <TableCell align="left" sx={{}}>{props.currency.name}</TableCell>
-            <TableCell align="right">{props.currency.value}</TableCell>
-            <TableCell align="right">{props.currency.code}</TableCell>
-            <TableCell align="right">{props.currency.rate}</TableCell>
+            <TableCell align="left">{currency.Name}</TableCell>
+            <TableCell align="right">{currency.Nominal}</TableCell>
+            <TableCell align="right">{currency.CharCode}</TableCell>
+            <TableCell align="right">{!selectedValue ? 'Не выбрано' : (currency.Value / selectedValue).toFixed(4)}</TableCell>
         </TableRow>
     );
+
 };
 
 export default CurrencyRow;
