@@ -1,21 +1,25 @@
+import {handlerError} from "./handlerErrors";
+
 const config = {
-    url: 'https://www.cbr-xml-daily.ru/daily_json.js',
-    headers: {
-        "Content-type": "application/json",
-    }
+    url: 'https://www.cbr-xml-daily.ru/',
 }
 
 function onResponse(res) {
-    return res.ok ? res.json() : res.json().then(err => Promise.reject(err));
+    if (res.ok) {
+        return res.json()
+    } else {
+        return Promise.reject(res)
+    }
 }
 
-async function request(endpoint = '', params) {
-    const data = await fetch(`${config.url}`);
+function request(endpoint = '', params) {
+    return fetch(`${config.url}${endpoint}`)
+                .then(onResponse)
+                .catch(handlerError)
 
-    return onResponse(data);
 }
 
 export async function getValutes() {
-    const result = await request();
+    const result = await request('daily_json.js ');
     return result.Valute;
 }
